@@ -21,18 +21,20 @@ vector<User> users;
 
 class Car{
     public:
-string brand;
-string model;
- vector<string> platenum;
-string rentalcost;
-bool availability;
+    string brand;
+    string model;
+    vector<string> platenum;
+    int mincost;
+    int maxcost;
+    bool availability;
 
 
-Car(string b, string m, vector<string> p, string cost){
+Car(string b, string m, vector<string> p, int maxc, int minc){
 brand = b;
 model = m;
 platenum = p;
-rentalcost = cost;
+mincost = minc;
+maxcost = maxc;
 availability = true;
 }
 
@@ -55,13 +57,14 @@ cout << "Brand: " << brand
             cout << platenum[i];
             if (i < platenum.size() - 1) cout << ", ";
         }
-cout << " \t| | Rental Cost: ₱" << rentalcost
+cout << " \t| | Rental Cost: ₱" << mincost << "- ₱" << maxcost
 << " \t| |" << "\tStatus: " << (availability ? "Available" : "Rented/Not Avaiable") << endl;
 }
 
 };
 
 void seedDefaultUsers() {
+
     User defaultAdmin;
     User defaultEmployee;
     User defaultCostumer;
@@ -89,27 +92,28 @@ private:
 
 public:
     void allcars(){
-    cars.push_back(Car("Toyota", "Vios, Innova, Fortuner",{"CDB 4634", "UBT 4667", "UBT 3676"}, "2,500 - 4,500"));
-    cars.push_back(Car("Honda", "City, Civic, CR-V",{"TTC 3871", "TTK 4437", "TTY 8778"}, "2,500 - 4,500"));
-    cars.push_back(Car("Mitsubishi", "Mirage, Montero Sport",{"GPE 2397,", "EPG 7072", "JPR 7301"}, "2,000 – 4,000"));
-    cars.push_back(Car("Nissan", "Almera, Navara, Terra",{"CTC 2573", "CYO 7971", "OYS 8310"}, "2,500 - 4,500"));
-    cars.push_back(Car("Hyundai", "Accent, Tucson", {"CTC 2573", "CYO 7971", "OYS 8310"}, "2,500 – 4,500"));
-    cars.push_back(Car("Kia", " Picanto, Sportage",{"TYC 0001", "YSY 7281"}, "2,000 – 4,000"));
-    cars.push_back(Car("Ford", "Ranger, Everest",{"YTY 8282", "POA 0911"}, "3,000 – 5,000"));
-    cars.push_back(Car("Chevrolet", "Spark, Trailblazer",{"MMO 3311,", "MMM 0098"}, "2,500 – 4,500"));
-    cars.push_back(Car("Mazda", "Mazda 2, CX-5",{" POT 9821", "NXT 8882"}, "2,500 – 4,500"));
-    cars.push_back(Car("Suzuki", "Swift, Ertiga",{"SWD 7272", "MMA 8766"}, "2,000 – 3,500"));
-    cars.push_back(Car("Subaru", "Forester, XV",{"MOA 6612", "MAL 0043"}, "3,000 – 5,000"));
-    cars.push_back(Car("Volkswagen", "3 Series, X3",{"NEU 7722", "NYW 7627"}, "5,000 – 8,000"));
-    cars.push_back(Car("BMW", "City, Civic, CR-V",{"TTC 3871", "TTK 4437", "TTY 8778"}, "2,500 - 4,500"));
-    cars.push_back(Car("Mercedes-Benz", "C-Class, GLC",{"POA 7621", "TOL 7509"}, "6,000 – 9,000"));
-    cars.push_back(Car("Audi", "A4, Q5",{"AUK 0493", "KOM 7784"}, "6,000 – 9,000"));
-    cars.push_back(Car("Lexus", "ES, RX",{"KOW 8822", "MOL 9928"}, "6,000 – 9,000"));
-    cars.push_back(Car("Isuzu", "D-Max, mu-X",{"NTX 2891", "TOP 2938"}, "3,000 – 5,000"));
-    cars.push_back(Car("Chery", "Tiggo Series",{"POL 9273",  "HGF 0192"}, "2,500 – 4,000"));
-    cars.push_back(Car("Geely", "Coolray, Azkarra",{"OWT 0129", "YUT 8778"}, "2,500 – 4,000"));
-    cars.push_back(Car("Foton", "Gratour, Toano",{"OIW 0987", "EWM 8789"}, "2,500 – 4,500"));
-    }
+    cars.push_back(Car("Toyota", "Vios, Innova, Fortuner", {"CDB 4634", "UBT 4667", "UBT 3676"}, 2500, 4500));
+    cars.push_back(Car("Honda", "City, Civic, CR-V", {"TTC 3871", "TTK 4437", "TTY 8778"}, 2500, 4500));
+    cars.push_back(Car("Mitsubishi", "Mirage, Montero Sport", {"GPE 2397", "EPG 7072", "JPR 7301"}, 2000, 4000));
+    cars.push_back(Car("Nissan", "Almera, Navara, Terra", {"CTC 2573", "CYO 7971", "OYS 8310"}, 2500, 4500));
+    cars.push_back(Car("Hyundai", "Accent, Tucson", {"CTC 2573", "CYO 7971", "OYS 8310"}, 2500, 4500));
+    cars.push_back(Car("Kia", "Picanto, Sportage", {"TYC 0001", "YSY 7281"}, 2000, 4000));
+    cars.push_back(Car("Ford", "Ranger, Everest", {"YTY 8282", "POA 0911"}, 3000, 5000));
+    cars.push_back(Car("Chevrolet", "Spark, Trailblazer", {"MMO 3311", "MMM 0098"}, 2500, 4500));
+    cars.push_back(Car("Mazda", "Mazda 2, CX-5", {"POT 9821", "NXT 8882"}, 2500, 4500));
+    cars.push_back(Car("Suzuki", "Swift, Ertiga", {"SWD 7272", "MMA 8766"}, 2000, 3500));
+    cars.push_back(Car("Subaru", "Forester, XV", {"MOA 6612", "MAL 0043"}, 3000, 5000));
+    cars.push_back(Car("Volkswagen", "3 Series, X3", {"NEU 7722", "NYW 7627"}, 5000, 8000));
+    cars.push_back(Car("BMW", "City, Civic, CR-V", {"TTC 3871", "TTK 4437", "TTY 8778"}, 2500, 4500));
+    cars.push_back(Car("Mercedes-Benz", "C-Class, GLC", {"POA 7621", "TOL 7509"}, 6000, 9000));
+    cars.push_back(Car("Audi", "A4, Q5", {"AUK 0493", "KOM 7784"}, 6000, 9000));
+    cars.push_back(Car("Lexus", "ES, RX", {"KOW 8822", "MOL 9928"}, 6000, 9000));
+    cars.push_back(Car("Isuzu", "D-Max, mu-X", {"NTX 2891", "TOP 2938"}, 3000, 5000));
+    cars.push_back(Car("Chery", "Tiggo Series", {"POL 9273", "HGF 0192"}, 2500, 4000));
+    cars.push_back(Car("Geely", "Coolray, Azkarra", {"OWT 0129", "YUT 8778"}, 2500, 4000));
+    cars.push_back(Car("Foton", "Gratour, Toano", {"OIW 0987", "EWM 8789"}, 2500, 4500));
+}
+
 
     void chooseCarBrand() {
     set<string> uniqueBrands;
@@ -188,7 +192,7 @@ void rentCar(User& costumer) {
     vector<Car>& cars = rentalSystem.getCars();
     set<string> uniqueBrands;
 
-  
+
     for (const auto& car : cars) {
         if (car.isAvailable()) {
             uniqueBrands.insert(car.brand);
@@ -202,7 +206,7 @@ void rentCar(User& costumer) {
         return;
     }
 
-   
+
     vector<string> brandList(uniqueBrands.begin(), uniqueBrands.end());
     cout << "\nAvailable Car Brands:\n";
     for (size_t i = 0; i < brandList.size(); ++i) {
@@ -223,7 +227,7 @@ void rentCar(User& costumer) {
     string selectedBrand = brandList[brandChoice - 1];
     cout << "\n--- Cars for Brand: " << selectedBrand << " ---\n";
 
-    
+
     vector<Car> availableCars;
     for (auto& car : cars) {
         if (car.brand == selectedBrand && car.isAvailable()) {
@@ -239,7 +243,7 @@ void rentCar(User& costumer) {
         return;
     }
 
-    
+
     vector<string> allPlates;
     for (const auto& car : availableCars) {
         for (const auto& plate : car.platenum) {
@@ -264,15 +268,50 @@ void rentCar(User& costumer) {
     }
 
     string chosenPlate = allPlates[plateChoice - 1];
+    int paymentoption;
+    int duration;
+    cout << "\nSelect payment method: " << endl;
+    cout << "[1] - Per Day" << endl;
+    cout << "[2] = Per Week" << endl;
+    cout << "Choice: ";
+    cin >> paymentoption;
 
-   
+    if(paymentoption != 1 && paymentoption != 2){
+        cout << "Invalid payment selection \n\n";
+        system("pause");
+        system("cls");
+        return;
+    }
+
+    cout << "\nEnter number of " << (paymentoption == 1 ? "days" : "weeks") << ": ";
+    cin >> duration;
+
     bool plateFound = false;
     for (auto& car : cars) {
+    int averagecost = (car.mincost + car.maxcost) / 2;
+    int totalcost = averagecost * duration;
+
+
         if (find(car.platenum.begin(), car.platenum.end(), chosenPlate) != car.platenum.end()) {
             if (car.isAvailable()) {
-                car.removePlate(chosenPlate); 
-                car.availability = false; 
-                cout << "Car with plate " << chosenPlate << " rented successfully!\n";
+                if(paymentoption == 2){
+                    totalcost *= 7;
+                }
+                cout << "\nEstimated Rental Cost for " << duration
+                << (paymentoption == 1 ? "days" : "weeks") << ": ₱" << totalcost << endl;
+
+                char confirmation;
+                cout << "Do you want to proceed with the rental? (Y = Yes, N = No): ";
+                cin >> confirmation;
+
+                if(confirmation == 'y' || confirmation == 'Y'){
+                    car.removePlate(chosenPlate);
+                    car.availability = !car.platenum.empty();
+                    cout << "\Car with plate" << chosenPlate << " Has been rented successfully!" << endl;
+                } else {
+                cout << "Rental Cancelled!" << endl;
+                }
+
                 plateFound = true;
                 break;
             } else {
@@ -281,11 +320,13 @@ void rentCar(User& costumer) {
                 break;
             }
         }
-    }
 
+    }
     if (!plateFound) {
         cout << "Plate number not found or already rented.\n";
     }
+
+
 
     system("pause");
     system("cls");
@@ -476,7 +517,7 @@ case 1:
     rentalSystem.chooseCarBrand();
     break;
 case 2:
-    rentCar(const_cast<User&>(costumer));  
+    rentCar(const_cast<User&>(costumer));
     break;
     }
 }
